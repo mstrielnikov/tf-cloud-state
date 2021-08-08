@@ -2,15 +2,15 @@
 # Some usefull options are disabled to reduce AWS service usage in order to reduce billing 
 resource "aws_s3_bucket" "s3_bucket_tf_state" {
   bucket        = "${var.prefix_s3}-${var.env}"
-  acl           = "private"
-  force_destroy = false
+  acl           = var.s3_acl
+  force_destroy = var.force_destroy_enabled
   tags          = {
     Name        = "${var.prefix_s3}-${var.env}"
     Environment = var.env
   }
 
   versioning {
-      enabled = false
+      enabled = var.s3_versioning_enabled
   }
   
   # server_side_encryption_configuration {
@@ -21,14 +21,14 @@ resource "aws_s3_bucket" "s3_bucket_tf_state" {
   #   }
   # }
   # 
-  # object_lock_configuration {
-  #   object_lock_enabled = "Enabled"
-  # }
-  # 
-  # logging {
-  #   target_bucket = aws_s3_bucket.log_bucket.id
-  #   target_prefix = "log/"
-  # }
+  object_lock_configuration {
+    object_lock_enabled = var.s3_object_lock_enabled
+  }
+   
+  logging {
+    target_bucket = aws_s3_bucket.s3_bucket_tf_state.id
+    target_prefix = "log/"
+  }
 }
 
 # Refer to the terraform documentation on s3_bucket_public_access_block at
@@ -36,10 +36,10 @@ resource "aws_s3_bucket" "s3_bucket_tf_state" {
 # for the nuances of the blocking options
 resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block_tf_state" {
   bucket = aws_s3_bucket.s3_bucket_tf_state.id
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
+  block_public_acls       = var.s3_block_public_acls
+  block_public_policy     = var.s3_block_public_policy
+  ignore_public_acls      = var.s3_ignore_public_acls
+  restrict_public_buckets = var.s3_restrict_public_buckets
 }
 
 resource "aws_iam_user_policy" "iam_policy_s3_tf_state" {
@@ -61,6 +61,6 @@ resource "aws_iam_user_policy" "iam_policy_s3_tf_state" {
     })
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = var.create_before_destroy_enabled
   }
 }
