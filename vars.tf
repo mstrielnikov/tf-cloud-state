@@ -1,16 +1,3 @@
-################# Provider config #############################
-variable region {
-    type = string
-}
-
-variable credentials {
-    type = string
-}
-
-variable profile {
-    type = string
-}
-
 ################# Project variables ###########################
 variable env {
     type = string
