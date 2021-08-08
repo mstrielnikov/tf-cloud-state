@@ -2,7 +2,7 @@ resource "aws_dynamodb_table" "dynamodb_table_tf_state" {
   name         = "${var.prefix_dynamodb}-${var.env}"
   read_capacity  = 5
   write_capacity = 5
-  billing_mode = "PAY_PER_REQUEST"
+  billing_mode = var.dynamodb_billing_mode
   hash_key     = "LockID"
 
   attribute {
@@ -34,6 +34,6 @@ resource "aws_iam_user_policy" "iam_policy_dynamodb_tf_state" {
     })
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = var.create_before_destroy
   }
 }
