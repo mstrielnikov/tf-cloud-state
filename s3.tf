@@ -1,7 +1,7 @@
 # The configuration provides necessary minimum options to securely setup Terraform remote state with S3 and DynamoDB
 # Some usefull options are disabled to reduce AWS service usage in order to reduce billing 
 resource "aws_s3_bucket" "s3_bucket_tf_state" {
-  bucket        = "${var.prefix_s3}-${var.env}"
+  bucket        = "${var.prefix_s3}-${var.env}-state"
   acl           = var.s3_acl
   force_destroy = var.force_destroy_enabled
   tags          = {
