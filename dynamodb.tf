@@ -34,6 +34,6 @@ resource "aws_iam_user_policy" "iam_policy_dynamodb_tf_state" {
     })
 
   lifecycle {
-    create_before_destroy = var.create_before_destroy
+    create_before_destroy = var.create_before_destroy_enabled
   }
 }

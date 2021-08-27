@@ -25,4 +25,4 @@ module aws_state_foo {
 # Official docs
 
 * [S3 backend](https://www.terraform.io/docs/language/settings/backends/s3.html)
-& [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+* [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
