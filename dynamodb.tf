@@ -32,8 +32,4 @@ resource "aws_iam_user_policy" "iam_policy_dynamodb_tf_state" {
         "Resource": "arn:aws:dynamodb:*:*:${var.prefix_dynamodb}-${var.env}/"
       }]
     })
-
-  lifecycle {
-    create_before_destroy = var.create_before_destroy_enabled
-  }
 }

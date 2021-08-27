@@ -59,8 +59,4 @@ resource "aws_iam_user_policy" "iam_policy_s3_tf_state" {
           "Resource": "arn:aws:s3:::${var.prefix_iam_s3}-${var.env}/"
         }]
     })
-
-  lifecycle {
-    create_before_destroy = var.create_before_destroy_enabled
-  }
 }
