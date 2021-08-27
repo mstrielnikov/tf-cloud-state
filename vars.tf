@@ -65,16 +65,15 @@ variable dynamodb_billing_mode {
 ################# Name prefixes ###############################
 variable prefix_dynamodb {
     type = string
+    default = "dynamodb-tf-state-locktable"
 }
 
 variable prefix_s3 {
     type = string
-}
-
-variable prefix_iam_s3 {
-    type = string
+    default = "s3-bucket"
 }
 
 variable prefix_iam_user {
     type = string
+    default = "iam-user"
 }
