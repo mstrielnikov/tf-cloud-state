@@ -21,9 +21,9 @@ resource "aws_s3_bucket" "s3_bucket_tf_state" {
   #   }
   # }
   # 
-  object_lock_configuration {
-    object_lock_enabled = var.s3_object_lock_enabled
-  }
+  # object_lock_configuration {
+  #   object_lock_enabled = var.s3_object_lock_enabled
+  # }
    
   # logging {
   #   target_bucket = aws_s3_bucket.s3_bucket_logging.id
