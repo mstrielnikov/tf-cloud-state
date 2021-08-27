@@ -45,7 +45,7 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block_tf_s
 resource "aws_iam_user_policy" "iam_policy_s3_tf_state" {
   #bridgecrew:skip=BC_AWS_IAM_16:Skipping `Ensure IAM policies are attached only to groups or roles` check because this module intentionally attaches IAM policy directly to a user.
   user   = aws_iam_user.iam_user_tf_state.name
-  name   = "${var.prefix_iam_s3}-${var.env}"
+  name   = "${var.prefix_s3}-${var.env}"
   policy = jsonencode({
       "Version": "2012-10-17",
       "Statement": [{
@@ -56,7 +56,7 @@ resource "aws_iam_user_policy" "iam_policy_s3_tf_state" {
         {
           "Effect": "Allow",
           "Action": ["s3:GetObject", "s3:PutObject"],
-          "Resource": "arn:aws:s3:::${var.prefix_iam_s3}-${var.env}/"
+          "Resource": "arn:aws:s3:::${var.prefix_s3}-${var.env}/"
         }]
     })
 }
