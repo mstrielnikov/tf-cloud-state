@@ -25,10 +25,10 @@ resource "aws_s3_bucket" "s3_bucket_tf_state" {
     object_lock_enabled = var.s3_object_lock_enabled
   }
    
-  logging {
-    target_bucket = aws_s3_bucket.s3_bucket_tf_state.id
-    target_prefix = "log/"
-  }
+  # logging {
+  #   target_bucket = aws_s3_bucket.s3_bucket_logging.id
+  #   target_prefix = "log/"
+  # }
 }
 
 # Refer to the terraform documentation on s3_bucket_public_access_block at
