@@ -18,7 +18,7 @@ resource "aws_dynamodb_table" "dynamodb_table_tf_state" {
 
 resource "aws_iam_user_policy" "iam_policy_dynamodb_tf_state" {
   #bridgecrew:skip=BC_AWS_IAM_16:Skipping `Ensure IAM policies are attached only to groups or roles` check because this module intentionally attaches IAM policy directly to a user.
-  user   = aws_iam_user.iam_user_tf_state_mc.name
+  user   = aws_iam_user.iam_user_tf_state.name
   name   = "${var.prefix_dynamodb}-${var.env}"
   policy = jsonencode({
       "Version": "2012-10-17",
